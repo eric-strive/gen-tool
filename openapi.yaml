@@ -1,0 +1,1302 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: 广告相关接口
+    description: 广告相关接口
+    version: 0.0.1
+paths:
+    /internal/ad/cs/cs_advertising/add:
+        post:
+            tags:
+                - AdSystem
+            description: 新增投放
+            operationId: AdSystem_CreateCsAdvertising
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CsAdvertisingCreate'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Response'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /internal/ad/cs/cs_advertising/delete:
+        get:
+            tags:
+                - AdSystem
+            description: 删除投放
+            operationId: AdSystem_DeleteCsAdvertising
+            parameters:
+                - name: id
+                  in: query
+                  description: '@inject_tag: json:"id" form:"id"主键'
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Response'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /internal/ad/cs/cs_advertising/detail:
+        get:
+            tags:
+                - AdSystem
+            description: 获取投放详情
+            operationId: AdSystem_GetCsAdvertising
+            parameters:
+                - name: id
+                  in: query
+                  description: '@inject_tag: json:"id" form:"id"主键'
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CsAdvertisingRequest'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        post:
+            tags:
+                - AdSystem
+            description: 更新投放
+            operationId: AdSystem_UpdateCsAdvertising
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CsAdvertisingCreate'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Response'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /internal/ad/cs/cs_advertising/list:
+        get:
+            tags:
+                - AdSystem
+            description: 获取投放列表
+            operationId: AdSystem_ListCsAdvertising
+            parameters:
+                - name: plan_id
+                  in: query
+                  description: '@inject_tag: json:"plan_id" form:"plan_id"计划ID'
+                  schema:
+                    type: string
+                - name: position_id
+                  in: query
+                  description: '@inject_tag: json:"position_id" form:"position_id"资源位ID'
+                  schema:
+                    type: string
+                - name: ad_id
+                  in: query
+                  description: '@inject_tag: json:"ad_id" form:"ad_id"广告ID'
+                  schema:
+                    type: string
+                - name: layout
+                  in: query
+                  description: '@inject_tag: json:"layout" form:"layout"样式'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: show_icon
+                  in: query
+                  description: '@inject_tag: json:"show_icon" form:"show_icon"是否展示广告标记  0：不展示，1：展示(国内&#34;广告&#34;,国外&#34;AD&#34;)'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: upload_general_param
+                  in: query
+                  description: '@inject_tag: json:"upload_general_param" form:"upload_general_param"表示自投是否需要客户端上传通用参数，int类型，0表示客户端不需要添加，1表示客户端需要添加'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: title
+                  in: query
+                  description: '@inject_tag: json:"title" form:"title"广告标题'
+                  schema:
+                    type: string
+                - name: url
+                  in: query
+                  description: '@inject_tag: json:"url" form:"url"跳转链接'
+                  schema:
+                    type: string
+                - name: deeplink_url
+                  in: query
+                  description: '@inject_tag: json:"deeplink_url" form:"deeplink_url"deeplink链接'
+                  schema:
+                    type: string
+                - name: pic_time
+                  in: query
+                  description: '@inject_tag: json:"pic_time" form:"pic_time"广告图片资源更新时间（包括pic资源和icon_pic资源）'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: size
+                  in: query
+                  description: '@inject_tag: json:"size" form:"size"广告大小 ,1:表示小卡片,2:表示大卡片(必传参数)'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: logic_type
+                  in: query
+                  description: '@inject_tag: json:"logic_type" form:"logic_type"广告逻辑(必传参数)'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: ad_index
+                  in: query
+                  description: '@inject_tag: json:"ad_index" form:"ad_index"设置广告排列顺序(必传参数)'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: logic_detail
+                  in: query
+                  description: '@inject_tag: json:"logic_detail" form:"logic_detail"频控相关参数'
+                  schema:
+                    type: string
+                - name: conditions
+                  in: query
+                  description: '@inject_tag: json:"conditions" form:"conditions"设置广告条件'
+                  schema:
+                    type: string
+                - name: multi_info
+                  in: query
+                  description: '@inject_tag: json:"multi_info" form:"multi_info"native信息流支持多语言的的相关参数，未设置多语言，则默认值传'
+                  schema:
+                    type: string
+                - name: button_info
+                  in: query
+                  description: '@inject_tag: json:"button_info" form:"button_info"按钮样式配置'
+                  schema:
+                    type: string
+                - name: clicktrackers
+                  in: query
+                  description: '@inject_tag: json:"clicktrackers" form:"clicktrackers"点击检测平台链接'
+                  schema:
+                    type: string
+                - name: imptrackers
+                  in: query
+                  description: '@inject_tag: json:"imptrackers" form:"imptrackers"展示检测平台链接'
+                  schema:
+                    type: string
+                - name: videotrackers
+                  in: query
+                  description: '@inject_tag: json:"videotrackers" form:"videotrackers"视频检测平台链接'
+                  schema:
+                    type: string
+                - name: dptrackers
+                  in: query
+                  description: '@inject_tag: json:"dptrackers" form:"dptrackers"第三方检测平台统计deeplink唤起时的上报地址列表'
+                  schema:
+                    type: string
+                - name: macro
+                  in: query
+                  description: '@inject_tag: json:"macro" form:"macro"该广告涉及到的宏替换映射，第三方宏 -&gt; CS宏'
+                  schema:
+                    type: string
+                - name: description
+                  in: query
+                  description: '@inject_tag: json:"description" form:"description"广告详情描述文字默认文案'
+                  schema:
+                    type: string
+                - name: btn_text
+                  in: query
+                  description: '@inject_tag: json:"btn_text" form:"btn_text"广告详情的按钮文字默认文案'
+                  schema:
+                    type: string
+                - name: res_url
+                  in: query
+                  description: '@inject_tag: json:"res_url" form:"res_url"素材相关链接'
+                  schema:
+                    type: string
+                - name: max_show
+                  in: query
+                  description: '@inject_tag: json:"max_show" form:"max_show"最大展示次数'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: max_click
+                  in: query
+                  description: '@inject_tag: json:"max_click" form:"max_click"最大点击次数'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: showed
+                  in: query
+                  description: '@inject_tag: json:"showed" form:"showed"已展示次数'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: clicked
+                  in: query
+                  description: '@inject_tag: json:"clicked" form:"clicked"已点击次数'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: applaunch_info
+                  in: query
+                  description: '@inject_tag: json:"applaunch_info" form:"applaunch_info"开屏特有版位信息 详见文档'
+                  schema:
+                    type: string
+                - name: style_click_tip
+                  in: query
+                  description: '@inject_tag: json:"style_click_tip" form:"style_click_tip"开屏样式配置'
+                  schema:
+                    type: string
+                - name: application_tab_info
+                  in: query
+                  description: '@inject_tag: json:"application_tab_info" form:"application_tab_info"Application_Tab版位信息，详见文档'
+                  schema:
+                    type: string
+                - name: expiry
+                  in: query
+                  description: '@inject_tag: json:"expiry" form:"expiry"广告过期时间'
+                  schema:
+                    type: integer
+                    format: int64
+                - name: carousel
+                  in: query
+                  description: '@inject_tag: json:"carousel" form:"carousel"自投级别轮播顺序，支持配置多个轮播序号，用逗号间隔'
+                  schema:
+                    type: string
+                - name: bg_color
+                  in: query
+                  description: '@inject_tag: json:"bg_color" form:"bg_color"广告背景颜色'
+                  schema:
+                    type: string
+                - name: priority
+                  in: query
+                  description: '@inject_tag: json:"priority" form:"priority"广告优先级'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: skip_click_area_style
+                  in: query
+                  description: '@inject_tag: json:"skip_click_area_style" form:"skip_click_area_style"点击区域控制参数'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: ad_sign_text
+                  in: query
+                  description: '@inject_tag: json:"ad_sign_text" form:"ad_sign_text"广告标识文案'
+                  schema:
+                    type: string
+                - name: is_pop_up_declare
+                  in: query
+                  description: '@inject_tag: json:"is_pop_up_declare" form:"is_pop_up_declare"是否需要免责申明弹窗'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: jump_alert
+                  in: query
+                  description: '@inject_tag: json:"jump_alert" form:"jump_alert"表示直呼是否需要弹窗，int类型，0表示不需要，1表示需要'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: jump_alert_type
+                  in: query
+                  description: '@inject_tag: json:"jump_alert_type" form:"jump_alert_type"广告合规优化需求中的直呼的展示类型，int类ing，1表示全屏可点，2表示仅文字可点，0表示无语义'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: network_types
+                  in: query
+                  description: '@inject_tag: json:"network_types" form:"network_types"网络类型'
+                  schema:
+                    type: string
+                - name: triple_company_name
+                  in: query
+                  description: '@inject_tag: json:"triple_company_name" form:"triple_company_name"第三方公司名称'
+                  schema:
+                    type: string
+                - name: is_show_result_page
+                  in: query
+                  description: '@inject_tag: json:"is_show_result_page" form:"is_show_result_page"是否展示激励视频结果页'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: duration
+                  in: query
+                  description: '@inject_tag: json:"duration" form:"duration"播放自动结束时长 单位秒'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: approve_remark
+                  in: query
+                  description: '@inject_tag: json:"approve_remark" form:"approve_remark"审批备注'
+                  schema:
+                    type: string
+                - name: brand_name
+                  in: query
+                  description: '@inject_tag: json:"brand_name" form:"brand_name"品牌名称'
+                  schema:
+                    type: string
+                - name: price_type
+                  in: query
+                  description: '@inject_tag: json:"price_type" form:"price_type"表示广告的结算方式， str类型，历史记录无该值得默认为unknown'
+                  schema:
+                    type: string
+                - name: price
+                  in: query
+                  description: '@inject_tag: json:"price" form:"price"结算价格'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: status
+                  in: query
+                  description: '@inject_tag: json:"status" form:"status"状态'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: is_deleted
+                  in: query
+                  description: '@inject_tag: json:"is_deleted" form:"is_deleted"'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: create_time
+                  in: query
+                  description: '@inject_tag: json:"create_time" form:"create_time"创建时间'
+                  schema:
+                    type: integer
+                    format: int64
+                - name: num
+                  in: query
+                  description: '@inject_tag: json:"num" form:"num"每页条数'
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: offset
+                  in: query
+                  description: '@inject_tag: json:"offset" form:"offset"偏移量'
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: order_key
+                  in: query
+                  description: '@inject_tag: json:"order_key" form:"order_key"排序key'
+                  schema:
+                    type: string
+                - name: order_desc
+                  in: query
+                  description: '@inject_tag: json:"order_desc" form:"order_desc"排序要求'
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CsAdvertisingListResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /internal/ad/cs/cs_plan/add:
+        post:
+            tags:
+                - AdSystem
+            description: 新增投放计划
+            operationId: AdSystem_CreateCsPlan
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CsPlanCreate'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Response'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /internal/ad/cs/cs_plan/delete:
+        get:
+            tags:
+                - AdSystem
+            description: 删除投放计划
+            operationId: AdSystem_DeleteCsPlan
+            parameters:
+                - name: id
+                  in: query
+                  description: '@inject_tag: json:"id" form:"id"主键'
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Response'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /internal/ad/cs/cs_plan/detail:
+        get:
+            tags:
+                - AdSystem
+            description: 获取投放计划详情
+            operationId: AdSystem_GetCsPlan
+            parameters:
+                - name: id
+                  in: query
+                  description: '@inject_tag: json:"id" form:"id"主键'
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CsPlanRequest'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        post:
+            tags:
+                - AdSystem
+            description: 更新投放计划
+            operationId: AdSystem_UpdateCsPlan
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CsPlanCreate'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Response'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /internal/ad/cs/cs_plan/list:
+        get:
+            tags:
+                - AdSystem
+            description: 获取投放计划列表
+            operationId: AdSystem_ListCsPlan
+            parameters:
+                - name: plan_id
+                  in: query
+                  description: '@inject_tag: json:"plan_id" form:"plan_id"计划ID'
+                  schema:
+                    type: string
+                - name: plan_name
+                  in: query
+                  description: '@inject_tag: json:"plan_name" form:"plan_name"计划名称'
+                  schema:
+                    type: string
+                - name: note
+                  in: query
+                  description: '@inject_tag: json:"note" form:"note"广告标记;对应投放名称'
+                  schema:
+                    type: string
+                - name: enable_users
+                  in: query
+                  description: '@inject_tag: json:"enable_users" form:"enable_users"白名单用户ID'
+                  schema:
+                    type: string
+                - name: disable_users
+                  in: query
+                  description: '@inject_tag: json:"disable_users" form:"disable_users"黑名单用户ID'
+                  schema:
+                    type: string
+                - name: enable_users_tag
+                  in: query
+                  description: '@inject_tag: json:"enable_users_tag" form:"enable_users_tag"白名单用户组标签'
+                  schema:
+                    type: string
+                - name: disable_users_tag
+                  in: query
+                  description: '@inject_tag: json:"disable_users_tag" form:"disable_users_tag"黑名单用户组标签'
+                  schema:
+                    type: string
+                - name: enable_device_tag
+                  in: query
+                  description: '@inject_tag: json:"enable_device_tag" form:"enable_device_tag"白名单设备组标签'
+                  schema:
+                    type: string
+                - name: disable_device_tag
+                  in: query
+                  description: '@inject_tag: json:"disable_device_tag" form:"disable_device_tag"黑名单设备组标签'
+                  schema:
+                    type: string
+                - name: source_type
+                  in: query
+                  description: '@inject_tag: json:"source_type" form:"source_type"投放类型：1表示广告 2表示运营活动'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: start_time
+                  in: query
+                  description: '@inject_tag: json:"start_time" form:"start_time"自动发布时间'
+                  schema:
+                    type: integer
+                    format: int64
+                - name: end_time
+                  in: query
+                  description: '@inject_tag: json:"end_time" form:"end_time"自动结束时间'
+                  schema:
+                    type: integer
+                    format: int64
+                - name: brand_name
+                  in: query
+                  description: '@inject_tag: json:"brand_name" form:"brand_name"品牌名称'
+                  schema:
+                    type: string
+                - name: price_type
+                  in: query
+                  description: '@inject_tag: json:"price_type" form:"price_type"表示广告的结算方式， str类型，历史记录无该值得默认为unknown'
+                  schema:
+                    type: string
+                - name: conditions
+                  in: query
+                  description: '@inject_tag: json:"conditions" form:"conditions"设置广告条件'
+                  schema:
+                    type: string
+                - name: price
+                  in: query
+                  description: '@inject_tag: json:"price" form:"price"结算价格'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: status
+                  in: query
+                  description: '@inject_tag: json:"status" form:"status"广告状态，0 未发布，1 白名单上线'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: is_deleted
+                  in: query
+                  description: '@inject_tag: json:"is_deleted" form:"is_deleted"是否删除，0 未删除，1已删除'
+                  schema:
+                    type: integer
+                    format: int32
+                - name: create_time
+                  in: query
+                  description: '@inject_tag: json:"create_time" form:"create_time"创建时间'
+                  schema:
+                    type: integer
+                    format: int64
+                - name: num
+                  in: query
+                  description: '@inject_tag: json:"num" form:"num"每页条数'
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: offset
+                  in: query
+                  description: '@inject_tag: json:"offset" form:"offset"偏移量'
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: order_key
+                  in: query
+                  description: '@inject_tag: json:"order_key" form:"order_key"排序key'
+                  schema:
+                    type: string
+                - name: order_desc
+                  in: query
+                  description: '@inject_tag: json:"order_desc" form:"order_desc"排序要求'
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CsPlanListResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+components:
+    schemas:
+        CsAdvertisingCreate:
+            type: object
+            properties:
+                plan_id:
+                    type: string
+                    description: '@inject_tag: json:"plan_id" form:"plan_id"计划ID'
+                position_id:
+                    type: string
+                    description: '@inject_tag: json:"position_id" form:"position_id"资源位ID'
+                ad_id:
+                    type: string
+                    description: '@inject_tag: json:"ad_id" form:"ad_id"广告ID'
+                layout:
+                    type: integer
+                    description: '@inject_tag: json:"layout" form:"layout"样式'
+                    format: int32
+                show_icon:
+                    type: integer
+                    description: '@inject_tag: json:"show_icon" form:"show_icon"是否展示广告标记  0：不展示，1：展示(国内&#34;广告&#34;,国外&#34;AD&#34;)'
+                    format: int32
+                upload_general_param:
+                    type: integer
+                    description: '@inject_tag: json:"upload_general_param" form:"upload_general_param"表示自投是否需要客户端上传通用参数，int类型，0表示客户端不需要添加，1表示客户端需要添加'
+                    format: int32
+                title:
+                    type: string
+                    description: '@inject_tag: json:"title" form:"title"广告标题'
+                url:
+                    type: string
+                    description: '@inject_tag: json:"url" form:"url"跳转链接'
+                deeplink_url:
+                    type: string
+                    description: '@inject_tag: json:"deeplink_url" form:"deeplink_url"deeplink链接'
+                pic_time:
+                    type: integer
+                    description: '@inject_tag: json:"pic_time" form:"pic_time"广告图片资源更新时间（包括pic资源和icon_pic资源）'
+                    format: int32
+                size:
+                    type: integer
+                    description: '@inject_tag: json:"size" form:"size"广告大小 ,1:表示小卡片,2:表示大卡片(必传参数)'
+                    format: int32
+                logic_type:
+                    type: integer
+                    description: '@inject_tag: json:"logic_type" form:"logic_type"广告逻辑(必传参数)'
+                    format: int32
+                ad_index:
+                    type: integer
+                    description: '@inject_tag: json:"ad_index" form:"ad_index"设置广告排列顺序(必传参数)'
+                    format: int32
+                logic_detail:
+                    type: string
+                    description: '@inject_tag: json:"logic_detail" form:"logic_detail"频控相关参数'
+                conditions:
+                    type: string
+                    description: '@inject_tag: json:"conditions" form:"conditions"设置广告条件'
+                multi_info:
+                    type: string
+                    description: '@inject_tag: json:"multi_info" form:"multi_info"native信息流支持多语言的的相关参数，未设置多语言，则默认值传'
+                button_info:
+                    type: string
+                    description: '@inject_tag: json:"button_info" form:"button_info"按钮样式配置'
+                clicktrackers:
+                    type: string
+                    description: '@inject_tag: json:"clicktrackers" form:"clicktrackers"点击检测平台链接'
+                imptrackers:
+                    type: string
+                    description: '@inject_tag: json:"imptrackers" form:"imptrackers"展示检测平台链接'
+                videotrackers:
+                    type: string
+                    description: '@inject_tag: json:"videotrackers" form:"videotrackers"视频检测平台链接'
+                dptrackers:
+                    type: string
+                    description: '@inject_tag: json:"dptrackers" form:"dptrackers"第三方检测平台统计deeplink唤起时的上报地址列表'
+                macro:
+                    type: string
+                    description: '@inject_tag: json:"macro" form:"macro"该广告涉及到的宏替换映射，第三方宏 -&gt; CS宏'
+                description:
+                    type: string
+                    description: '@inject_tag: json:"description" form:"description"广告详情描述文字默认文案'
+                btn_text:
+                    type: string
+                    description: '@inject_tag: json:"btn_text" form:"btn_text"广告详情的按钮文字默认文案'
+                res_url:
+                    type: string
+                    description: '@inject_tag: json:"res_url" form:"res_url"素材相关链接'
+                max_show:
+                    type: integer
+                    description: '@inject_tag: json:"max_show" form:"max_show"最大展示次数'
+                    format: int32
+                max_click:
+                    type: integer
+                    description: '@inject_tag: json:"max_click" form:"max_click"最大点击次数'
+                    format: int32
+                showed:
+                    type: integer
+                    description: '@inject_tag: json:"showed" form:"showed"已展示次数'
+                    format: int32
+                clicked:
+                    type: integer
+                    description: '@inject_tag: json:"clicked" form:"clicked"已点击次数'
+                    format: int32
+                applaunch_info:
+                    type: string
+                    description: '@inject_tag: json:"applaunch_info" form:"applaunch_info"开屏特有版位信息 详见文档'
+                style_click_tip:
+                    type: string
+                    description: '@inject_tag: json:"style_click_tip" form:"style_click_tip"开屏样式配置'
+                application_tab_info:
+                    type: string
+                    description: '@inject_tag: json:"application_tab_info" form:"application_tab_info"Application_Tab版位信息，详见文档'
+                expiry:
+                    type: integer
+                    description: '@inject_tag: json:"expiry" form:"expiry"广告过期时间'
+                    format: int64
+                carousel:
+                    type: string
+                    description: '@inject_tag: json:"carousel" form:"carousel"自投级别轮播顺序，支持配置多个轮播序号，用逗号间隔'
+                bg_color:
+                    type: string
+                    description: '@inject_tag: json:"bg_color" form:"bg_color"广告背景颜色'
+                priority:
+                    type: integer
+                    description: '@inject_tag: json:"priority" form:"priority"广告优先级'
+                    format: int32
+                skip_click_area_style:
+                    type: integer
+                    description: '@inject_tag: json:"skip_click_area_style" form:"skip_click_area_style"点击区域控制参数'
+                    format: int32
+                ad_sign_text:
+                    type: string
+                    description: '@inject_tag: json:"ad_sign_text" form:"ad_sign_text"广告标识文案'
+                is_pop_up_declare:
+                    type: integer
+                    description: '@inject_tag: json:"is_pop_up_declare" form:"is_pop_up_declare"是否需要免责申明弹窗'
+                    format: int32
+                jump_alert:
+                    type: integer
+                    description: '@inject_tag: json:"jump_alert" form:"jump_alert"表示直呼是否需要弹窗，int类型，0表示不需要，1表示需要'
+                    format: int32
+                jump_alert_type:
+                    type: integer
+                    description: '@inject_tag: json:"jump_alert_type" form:"jump_alert_type"广告合规优化需求中的直呼的展示类型，int类ing，1表示全屏可点，2表示仅文字可点，0表示无语义'
+                    format: int32
+                network_types:
+                    type: string
+                    description: '@inject_tag: json:"network_types" form:"network_types"网络类型'
+                triple_company_name:
+                    type: string
+                    description: '@inject_tag: json:"triple_company_name" form:"triple_company_name"第三方公司名称'
+                is_show_result_page:
+                    type: integer
+                    description: '@inject_tag: json:"is_show_result_page" form:"is_show_result_page"是否展示激励视频结果页'
+                    format: int32
+                duration:
+                    type: integer
+                    description: '@inject_tag: json:"duration" form:"duration"播放自动结束时长 单位秒'
+                    format: int32
+                approve_remark:
+                    type: string
+                    description: '@inject_tag: json:"approve_remark" form:"approve_remark"审批备注'
+                brand_name:
+                    type: string
+                    description: '@inject_tag: json:"brand_name" form:"brand_name"品牌名称'
+                price_type:
+                    type: string
+                    description: '@inject_tag: json:"price_type" form:"price_type"表示广告的结算方式， str类型，历史记录无该值得默认为unknown'
+                price:
+                    type: integer
+                    description: '@inject_tag: json:"price" form:"price"结算价格'
+                    format: int32
+                status:
+                    type: integer
+                    description: '@inject_tag: json:"status" form:"status"状态'
+                    format: int32
+                operator:
+                    type: string
+                    description: '@inject_tag: json:"operator" form:"operator"操作人'
+        CsAdvertisingDataInfo:
+            type: object
+            properties:
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/CsAdvertisingRequest'
+                    description: '@inject_tag: json:"list" form:"list"查询数据列表'
+                total_num:
+                    type: integer
+                    description: '@inject_tag: json:"total_num" form:"total_num"数据总条数'
+                    format: int64
+                num:
+                    type: integer
+                    description: '@inject_tag: json:"num" form:"num"每页数据条数'
+                    format: int32
+                offset:
+                    type: integer
+                    description: '@inject_tag: json:"offset" form:"offset"偏移量'
+                    format: int32
+        CsAdvertisingListResponse:
+            type: object
+            properties:
+                ret:
+                    type: integer
+                    description: '@inject_tag: json:"ret" form:"ret"状态码'
+                    format: uint32
+                err:
+                    type: string
+                    description: '@inject_tag: json:"err" form:"err"异常信息'
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/CsAdvertisingDataInfo'
+                    description: '@inject_tag: json:"data" form:"data"列表数据'
+        CsAdvertisingRequest:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: '@inject_tag: json:"id" form:"id"主键'
+                    format: int32
+                plan_id:
+                    type: string
+                    description: '@inject_tag: json:"plan_id" form:"plan_id"计划ID'
+                position_id:
+                    type: string
+                    description: '@inject_tag: json:"position_id" form:"position_id"资源位ID'
+                ad_id:
+                    type: string
+                    description: '@inject_tag: json:"ad_id" form:"ad_id"广告ID'
+                layout:
+                    type: integer
+                    description: '@inject_tag: json:"layout" form:"layout"样式'
+                    format: int32
+                show_icon:
+                    type: integer
+                    description: '@inject_tag: json:"show_icon" form:"show_icon"是否展示广告标记  0：不展示，1：展示(国内&#34;广告&#34;,国外&#34;AD&#34;)'
+                    format: int32
+                upload_general_param:
+                    type: integer
+                    description: '@inject_tag: json:"upload_general_param" form:"upload_general_param"表示自投是否需要客户端上传通用参数，int类型，0表示客户端不需要添加，1表示客户端需要添加'
+                    format: int32
+                title:
+                    type: string
+                    description: '@inject_tag: json:"title" form:"title"广告标题'
+                url:
+                    type: string
+                    description: '@inject_tag: json:"url" form:"url"跳转链接'
+                deeplink_url:
+                    type: string
+                    description: '@inject_tag: json:"deeplink_url" form:"deeplink_url"deeplink链接'
+                pic_time:
+                    type: integer
+                    description: '@inject_tag: json:"pic_time" form:"pic_time"广告图片资源更新时间（包括pic资源和icon_pic资源）'
+                    format: int32
+                size:
+                    type: integer
+                    description: '@inject_tag: json:"size" form:"size"广告大小 ,1:表示小卡片,2:表示大卡片(必传参数)'
+                    format: int32
+                logic_type:
+                    type: integer
+                    description: '@inject_tag: json:"logic_type" form:"logic_type"广告逻辑(必传参数)'
+                    format: int32
+                ad_index:
+                    type: integer
+                    description: '@inject_tag: json:"ad_index" form:"ad_index"设置广告排列顺序(必传参数)'
+                    format: int32
+                logic_detail:
+                    type: string
+                    description: '@inject_tag: json:"logic_detail" form:"logic_detail"频控相关参数'
+                conditions:
+                    type: string
+                    description: '@inject_tag: json:"conditions" form:"conditions"设置广告条件'
+                multi_info:
+                    type: string
+                    description: '@inject_tag: json:"multi_info" form:"multi_info"native信息流支持多语言的的相关参数，未设置多语言，则默认值传'
+                button_info:
+                    type: string
+                    description: '@inject_tag: json:"button_info" form:"button_info"按钮样式配置'
+                clicktrackers:
+                    type: string
+                    description: '@inject_tag: json:"clicktrackers" form:"clicktrackers"点击检测平台链接'
+                imptrackers:
+                    type: string
+                    description: '@inject_tag: json:"imptrackers" form:"imptrackers"展示检测平台链接'
+                videotrackers:
+                    type: string
+                    description: '@inject_tag: json:"videotrackers" form:"videotrackers"视频检测平台链接'
+                dptrackers:
+                    type: string
+                    description: '@inject_tag: json:"dptrackers" form:"dptrackers"第三方检测平台统计deeplink唤起时的上报地址列表'
+                macro:
+                    type: string
+                    description: '@inject_tag: json:"macro" form:"macro"该广告涉及到的宏替换映射，第三方宏 -&gt; CS宏'
+                description:
+                    type: string
+                    description: '@inject_tag: json:"description" form:"description"广告详情描述文字默认文案'
+                btn_text:
+                    type: string
+                    description: '@inject_tag: json:"btn_text" form:"btn_text"广告详情的按钮文字默认文案'
+                res_url:
+                    type: string
+                    description: '@inject_tag: json:"res_url" form:"res_url"素材相关链接'
+                max_show:
+                    type: integer
+                    description: '@inject_tag: json:"max_show" form:"max_show"最大展示次数'
+                    format: int32
+                max_click:
+                    type: integer
+                    description: '@inject_tag: json:"max_click" form:"max_click"最大点击次数'
+                    format: int32
+                showed:
+                    type: integer
+                    description: '@inject_tag: json:"showed" form:"showed"已展示次数'
+                    format: int32
+                clicked:
+                    type: integer
+                    description: '@inject_tag: json:"clicked" form:"clicked"已点击次数'
+                    format: int32
+                applaunch_info:
+                    type: string
+                    description: '@inject_tag: json:"applaunch_info" form:"applaunch_info"开屏特有版位信息 详见文档'
+                style_click_tip:
+                    type: string
+                    description: '@inject_tag: json:"style_click_tip" form:"style_click_tip"开屏样式配置'
+                application_tab_info:
+                    type: string
+                    description: '@inject_tag: json:"application_tab_info" form:"application_tab_info"Application_Tab版位信息，详见文档'
+                expiry:
+                    type: integer
+                    description: '@inject_tag: json:"expiry" form:"expiry"广告过期时间'
+                    format: int64
+                carousel:
+                    type: string
+                    description: '@inject_tag: json:"carousel" form:"carousel"自投级别轮播顺序，支持配置多个轮播序号，用逗号间隔'
+                bg_color:
+                    type: string
+                    description: '@inject_tag: json:"bg_color" form:"bg_color"广告背景颜色'
+                priority:
+                    type: integer
+                    description: '@inject_tag: json:"priority" form:"priority"广告优先级'
+                    format: int32
+                skip_click_area_style:
+                    type: integer
+                    description: '@inject_tag: json:"skip_click_area_style" form:"skip_click_area_style"点击区域控制参数'
+                    format: int32
+                ad_sign_text:
+                    type: string
+                    description: '@inject_tag: json:"ad_sign_text" form:"ad_sign_text"广告标识文案'
+                is_pop_up_declare:
+                    type: integer
+                    description: '@inject_tag: json:"is_pop_up_declare" form:"is_pop_up_declare"是否需要免责申明弹窗'
+                    format: int32
+                jump_alert:
+                    type: integer
+                    description: '@inject_tag: json:"jump_alert" form:"jump_alert"表示直呼是否需要弹窗，int类型，0表示不需要，1表示需要'
+                    format: int32
+                jump_alert_type:
+                    type: integer
+                    description: '@inject_tag: json:"jump_alert_type" form:"jump_alert_type"广告合规优化需求中的直呼的展示类型，int类ing，1表示全屏可点，2表示仅文字可点，0表示无语义'
+                    format: int32
+                network_types:
+                    type: string
+                    description: '@inject_tag: json:"network_types" form:"network_types"网络类型'
+                triple_company_name:
+                    type: string
+                    description: '@inject_tag: json:"triple_company_name" form:"triple_company_name"第三方公司名称'
+                is_show_result_page:
+                    type: integer
+                    description: '@inject_tag: json:"is_show_result_page" form:"is_show_result_page"是否展示激励视频结果页'
+                    format: int32
+                duration:
+                    type: integer
+                    description: '@inject_tag: json:"duration" form:"duration"播放自动结束时长 单位秒'
+                    format: int32
+                approve_remark:
+                    type: string
+                    description: '@inject_tag: json:"approve_remark" form:"approve_remark"审批备注'
+                brand_name:
+                    type: string
+                    description: '@inject_tag: json:"brand_name" form:"brand_name"品牌名称'
+                price_type:
+                    type: string
+                    description: '@inject_tag: json:"price_type" form:"price_type"表示广告的结算方式， str类型，历史记录无该值得默认为unknown'
+                price:
+                    type: integer
+                    description: '@inject_tag: json:"price" form:"price"结算价格'
+                    format: int32
+                status:
+                    type: integer
+                    description: '@inject_tag: json:"status" form:"status"状态'
+                    format: int32
+                is_deleted:
+                    type: integer
+                    description: '@inject_tag: json:"is_deleted" form:"is_deleted"'
+                    format: int32
+                create_time:
+                    type: integer
+                    description: '@inject_tag: json:"create_time" form:"create_time"创建时间'
+                    format: int64
+                create_by:
+                    type: string
+                    description: '@inject_tag: json:"create_by" form:"create_by"'
+                update_by:
+                    type: string
+                    description: '@inject_tag: json:"update_by" form:"update_by"'
+        CsPlanCreate:
+            type: object
+            properties:
+                plan_id:
+                    type: string
+                    description: '@inject_tag: json:"plan_id" form:"plan_id"计划ID'
+                plan_name:
+                    type: string
+                    description: '@inject_tag: json:"plan_name" form:"plan_name"计划名称'
+                note:
+                    type: string
+                    description: '@inject_tag: json:"note" form:"note"广告标记;对应投放名称'
+                enable_users:
+                    type: string
+                    description: '@inject_tag: json:"enable_users" form:"enable_users"白名单用户ID'
+                disable_users:
+                    type: string
+                    description: '@inject_tag: json:"disable_users" form:"disable_users"黑名单用户ID'
+                enable_users_tag:
+                    type: string
+                    description: '@inject_tag: json:"enable_users_tag" form:"enable_users_tag"白名单用户组标签'
+                disable_users_tag:
+                    type: string
+                    description: '@inject_tag: json:"disable_users_tag" form:"disable_users_tag"黑名单用户组标签'
+                enable_device_tag:
+                    type: string
+                    description: '@inject_tag: json:"enable_device_tag" form:"enable_device_tag"白名单设备组标签'
+                disable_device_tag:
+                    type: string
+                    description: '@inject_tag: json:"disable_device_tag" form:"disable_device_tag"黑名单设备组标签'
+                source_type:
+                    type: integer
+                    description: '@inject_tag: json:"source_type" form:"source_type"投放类型：1表示广告 2表示运营活动'
+                    format: int32
+                start_time:
+                    type: integer
+                    description: '@inject_tag: json:"start_time" form:"start_time"自动发布时间'
+                    format: int64
+                end_time:
+                    type: integer
+                    description: '@inject_tag: json:"end_time" form:"end_time"自动结束时间'
+                    format: int64
+                brand_name:
+                    type: string
+                    description: '@inject_tag: json:"brand_name" form:"brand_name"品牌名称'
+                price_type:
+                    type: string
+                    description: '@inject_tag: json:"price_type" form:"price_type"表示广告的结算方式， str类型，历史记录无该值得默认为unknown'
+                conditions:
+                    type: string
+                    description: '@inject_tag: json:"conditions" form:"conditions"设置广告条件'
+                price:
+                    type: integer
+                    description: '@inject_tag: json:"price" form:"price"结算价格'
+                    format: int32
+                status:
+                    type: integer
+                    description: '@inject_tag: json:"status" form:"status"广告状态，0 未发布，1 白名单上线'
+                    format: int32
+                operator:
+                    type: string
+                    description: '@inject_tag: json:"operator" form:"operator"操作人'
+        CsPlanDataInfo:
+            type: object
+            properties:
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/CsPlanRequest'
+                    description: '@inject_tag: json:"list" form:"list"查询数据列表'
+                total_num:
+                    type: integer
+                    description: '@inject_tag: json:"total_num" form:"total_num"数据总条数'
+                    format: int64
+                num:
+                    type: integer
+                    description: '@inject_tag: json:"num" form:"num"每页数据条数'
+                    format: int32
+                offset:
+                    type: integer
+                    description: '@inject_tag: json:"offset" form:"offset"偏移量'
+                    format: int32
+        CsPlanListResponse:
+            type: object
+            properties:
+                ret:
+                    type: integer
+                    description: '@inject_tag: json:"ret" form:"ret"状态码'
+                    format: uint32
+                err:
+                    type: string
+                    description: '@inject_tag: json:"err" form:"err"异常信息'
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/CsPlanDataInfo'
+                    description: '@inject_tag: json:"data" form:"data"列表数据'
+        CsPlanRequest:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: '@inject_tag: json:"id" form:"id"主键'
+                    format: int32
+                plan_id:
+                    type: string
+                    description: '@inject_tag: json:"plan_id" form:"plan_id"计划ID'
+                plan_name:
+                    type: string
+                    description: '@inject_tag: json:"plan_name" form:"plan_name"计划名称'
+                note:
+                    type: string
+                    description: '@inject_tag: json:"note" form:"note"广告标记;对应投放名称'
+                enable_users:
+                    type: string
+                    description: '@inject_tag: json:"enable_users" form:"enable_users"白名单用户ID'
+                disable_users:
+                    type: string
+                    description: '@inject_tag: json:"disable_users" form:"disable_users"黑名单用户ID'
+                enable_users_tag:
+                    type: string
+                    description: '@inject_tag: json:"enable_users_tag" form:"enable_users_tag"白名单用户组标签'
+                disable_users_tag:
+                    type: string
+                    description: '@inject_tag: json:"disable_users_tag" form:"disable_users_tag"黑名单用户组标签'
+                enable_device_tag:
+                    type: string
+                    description: '@inject_tag: json:"enable_device_tag" form:"enable_device_tag"白名单设备组标签'
+                disable_device_tag:
+                    type: string
+                    description: '@inject_tag: json:"disable_device_tag" form:"disable_device_tag"黑名单设备组标签'
+                source_type:
+                    type: integer
+                    description: '@inject_tag: json:"source_type" form:"source_type"投放类型：1表示广告 2表示运营活动'
+                    format: int32
+                start_time:
+                    type: integer
+                    description: '@inject_tag: json:"start_time" form:"start_time"自动发布时间'
+                    format: int64
+                end_time:
+                    type: integer
+                    description: '@inject_tag: json:"end_time" form:"end_time"自动结束时间'
+                    format: int64
+                brand_name:
+                    type: string
+                    description: '@inject_tag: json:"brand_name" form:"brand_name"品牌名称'
+                price_type:
+                    type: string
+                    description: '@inject_tag: json:"price_type" form:"price_type"表示广告的结算方式， str类型，历史记录无该值得默认为unknown'
+                conditions:
+                    type: string
+                    description: '@inject_tag: json:"conditions" form:"conditions"设置广告条件'
+                price:
+                    type: integer
+                    description: '@inject_tag: json:"price" form:"price"结算价格'
+                    format: int32
+                status:
+                    type: integer
+                    description: '@inject_tag: json:"status" form:"status"广告状态，0 未发布，1 白名单上线'
+                    format: int32
+                is_deleted:
+                    type: integer
+                    description: '@inject_tag: json:"is_deleted" form:"is_deleted"是否删除，0 未删除，1已删除'
+                    format: int32
+                create_time:
+                    type: integer
+                    description: '@inject_tag: json:"create_time" form:"create_time"创建时间'
+                    format: int64
+                update_time:
+                    type: string
+                    description: '@inject_tag: json:"update_time" form:"update_time"更新时间'
+                create_by:
+                    type: string
+                    description: '@inject_tag: json:"create_by" form:"create_by"创建人'
+                update_by:
+                    type: string
+                    description: '@inject_tag: json:"update_by" form:"update_by"更新人'
+        GoogleProtobufAny:
+            type: object
+            properties:
+                '@type':
+                    type: string
+                    description: The type of the serialized message.
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+        Response:
+            type: object
+            properties:
+                ret:
+                    type: integer
+                    description: '@inject_tag: json:"ret" form:"ret"状态码'
+                    format: int32
+                err:
+                    type: string
+                    description: '@inject_tag: json:"message" form:"message"异常信息'
+                data:
+                    $ref: '#/components/schemas/GoogleProtobufAny'
+            description: 默认响应格式
+        Status:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+                    format: int32
+                message:
+                    type: string
+                    description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+                details:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/GoogleProtobufAny'
+                    description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+            description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
+tags:
+    - name: AdSystem
